@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  text-decoration: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+:root{
+  --theme : #0D0630;
+  --blue : #18b2de;
+  --bluegrey : #6ac3dc;
+  --white : white;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+*::selection{
+  color: #18b2de;
+}
+::-webkit-scrollbar{
+  appearance: none;
+}
+body{
+  background-color: var(--theme);
+}
+form{
+  margin-top: 75px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 25px;
+}
+form h1,.heading{
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+p{
+  color: var(--white);
+  cursor: pointer;
+}
+.loader{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+/* podcasts page */
+.podcasts-container{
+  width: 100%;
+  margin-top: 25px;
+  padding: 2rem;
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+  gap: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width : 768px) {
+  .podcasts-container{
+    grid-template-columns: repeat(2,1fr);
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width : 450px) {
+  .podcasts-container{
+    grid-template-columns: auto;
   }
+}
+
+.podcast-details{
+  margin-top: 40px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.banner-bg{
+  padding: 5px;
+  background-color: rgb(43, 43, 78);
+  border-radius: 10px;
+  height: 40vh;
+}
+.podcast-details img{
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: inherit;
+}
+.podcast-details .custom-btn{
+  width: 170px;
+}
+
+/* Profile */
+#profile{
+  margin-top: 75px;
+}
+#logout-btn{
+  border: 2px solid tomato;
+  width: 100px ;
+}
+#logout-btn:hover{
+  background-color: tomato ;
 }
