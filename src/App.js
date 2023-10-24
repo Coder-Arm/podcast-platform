@@ -15,6 +15,7 @@ import CreatePodcastPage from './pages/CreatePodcastPage';
 import PodcastsPage from './pages/PodcastsPage';
 import PodcastDetails from './pages/PodcastDetails';
 import CreateEpisodePage from './pages/CreateEpisodePage';
+import EditPodcastPage from './pages/EditPodcastPage';
 
 function App() {
 const dispatch = useDispatch();
@@ -54,6 +55,7 @@ useEffect(() => {
       <Route element={<PrivateRoutes/>}>
       <Route path='/profile' element={<ProfilePage/>} />
       <Route path='/create-podcast' element={<CreatePodcastPage/>} />
+      <Route path='/edit-podcast' element={<EditPodcastPage/>} />
       <Route path='/podcasts' element={<PodcastsPage/>}/>
       <Route path='/podcast/:id' element={<PodcastDetails/>}/>
       <Route path='/podcast/:id/create-episode' element={<CreateEpisodePage/>}/>

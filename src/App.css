@@ -17,12 +17,13 @@
 *::selection{
   color: #18b2de;
 }
-::-webkit-scrollbar{
-  appearance: none;
-}
+
 body{
+  width: 100vw;
   background-color: var(--theme);
 }
+
+/* Signup Page */
 form{
   margin-top: 75px;
   display: flex;
@@ -38,6 +39,7 @@ form h1,.heading{
 p{
   color: var(--white);
   cursor: pointer;
+  text-align: center;
 }
 .loader{
   position: fixed;
@@ -47,7 +49,11 @@ p{
   justify-content: center;
   align-items: center;
 }
-
+@media (max-width : 450px) {
+  .custom-input,.custom-btn{
+    width: 85% !important;
+  }
+}
 /* podcasts page */
 .podcasts-container{
   width: 100%;
@@ -70,6 +76,7 @@ p{
   }
 }
 
+/* podcast-details-page */
 .podcast-details{
   margin-top: 40px;
   padding: 30px;
@@ -93,14 +100,52 @@ border-radius: inherit;
   width: 170px;
 }
 
-/* Profile */
+/* Profile Page*/
 #profile{
   margin-top: 75px;
 }
+.profile-pic{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.profile-pic > img{
+  width: 10%;
+}
+#user-img-uploader{
+display: none;
+}
+.podcasts-container.user-podcasts{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: -20px;
+}
+.out-btns{
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
 #logout-btn{
-  border: 2px solid tomato;
   width: 100px ;
 }
-#logout-btn:hover{
+#del-btn{
+  border: 2px solid tomato;
+  width: 180px;
+}
+#del-btn:hover{
   background-color: tomato ;
+}
+
+@media (max-width : 768px) {
+  .profile-pic > img{
+    width: 20%;
+  }
+}
+
+@media (max-width : 375px) {
+  .profile-pic > img{
+    width: 25%;
+  }
 }

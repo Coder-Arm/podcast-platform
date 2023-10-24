@@ -5,6 +5,9 @@ import { collection, doc, getDoc, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../Firebase';
 import EpisodeDetails from '../Components/EpisodeDetails';
 import AudioPlayer from '../Components/AudioPlayer';
+import { getAuth } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import {setCurrPodcast} from '../redux/Slices/currentPodcastSlice'
 
 const PodcastDetails = () => {
     const {id} = useParams();
@@ -12,6 +15,8 @@ const PodcastDetails = () => {
     const [episodes,setEpisodes] = useState([]);
     const [audioFile,setAudioFile] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const auth = getAuth();
     useEffect(() => {
         if(id){
             getData();
@@ -49,6 +54,11 @@ useEffect(() => {
     return () => unsubscribe()
 },[id])
 
+function handleEdit(){
+    dispatch(setCurrPodcast(podcast))
+    navigate('/edit-podcast')
+}
+
 function handleCreation(){
     navigate(`/podcast/${id}/create-episode`)
 }
@@ -59,7 +69,10 @@ function handleCreation(){
         podcast && <div className='podcast-details'>
             <div style={{display: 'flex' , justifyContent : 'space-between'}}>
             <h1>{podcast.title}</h1>
-            <button className='custom-btn' onClick={handleCreation}>Create Episode</button>
+            <div style={{display: 'flex',gap : '10px'}}>
+            {podcast.createdBy === auth.currentUser.uid ?<button onClick= {handleEdit}className='custom-btn'>Edit Podcast</button> : ''}
+           {podcast.createdBy === auth.currentUser.uid ? <button className='custom-btn' onClick={handleCreation}>Create Episode</button> : '' }
+           </div>
             </div>
             <div className='banner-bg'>
             <img src={podcast.bannerImage} alt={podcast.title}/>

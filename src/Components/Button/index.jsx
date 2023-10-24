@@ -2,18 +2,21 @@ import React, { useState } from 'react'
 import './style.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import {db,storage,auth} from '../../Firebase'
+import {db,auth} from '../../Firebase'
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth'
 import { setDoc,doc, getDoc, } from 'firebase/firestore'
 import { setUser } from '../../redux/Slices/userSlice'
 import { toast } from 'react-toastify'
 import validator from 'validator';
 import { Bars } from 'react-loader-spinner'
+import usePhotoApi from '../usePhotoApi'
 
 const ButtonComponent = ({text,name,email,password,confirmPass}) => {
    const [loading,setLoading] = useState(false);
  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {fetchAvatar} = usePhotoApi() 
+
   async function handleSubmission(e){
     setLoading(true)
     if(text === 'Signup'){
@@ -40,21 +43,24 @@ const ButtonComponent = ({text,name,email,password,confirmPass}) => {
               auth,email,password
           )
           const user = userCredential.user;
+          const userImgUrl = await fetchAvatar(name);
+          
           setLoading(false);
-          console.log(user);
+          console.log('user : ',user);
           toast.success('User created successfully')
           await setDoc(doc(db,'users',user.uid),{
             name : name,
             email : user.email,
             uid : user.uid,
+            profileImageUrl : userImgUrl
           })
-          dispatch(setUser({
+           dispatch(setUser({
               name : name,
               email : user.email,
               uid : user.uid,
+              profileImageUrl : userImgUrl
             }
           ))
-          
           navigate('/profile');
        }
        catch(error){
@@ -70,9 +76,9 @@ const ButtonComponent = ({text,name,email,password,confirmPass}) => {
              auth,email,password
          )
          const user = userCredential.user;
-        //  console.log(user);
           const userDoc = await getDoc(doc(db,'users',user.uid))
           const userData = userDoc.data();
+          const userImgUrl = await fetchAvatar(name);
           setLoading(false)
           // console.log(userData)
           toast.success('User logged In successfully')
@@ -81,6 +87,7 @@ const ButtonComponent = ({text,name,email,password,confirmPass}) => {
              name : userData.name,
              email : userData.email,
              uid : userData.uid,
+             profileImageUrl : userImgUrl
            }
          ))
           navigate('/profile');
