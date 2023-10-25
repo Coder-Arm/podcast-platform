@@ -57,6 +57,12 @@ useEffect(() => {
     }
 
     function handleVolume(e){
+      e.target.style.opacity = 1;
+
+        setTimeout(() => {
+          e.target.style.opacity = 0.4;
+        }, 1000);
+        
         setVolume(e.target.value)
         audioRef.current.volume = e.target.value;
     }
