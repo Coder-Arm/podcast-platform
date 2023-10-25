@@ -23,10 +23,16 @@
     cursor: pointer;
 }
 .duration-box,.vol-box{
-    width: 30%;
+    width: 20%;
     display: flex;
     align-items: center;
     gap: 10px;
+}
+.duration-box{
+    width: 50%;
+}
+.vol-range{
+    width: 100%;
 }
 .custom-audio-player input{
     filter: hue-rotate(35deg);
@@ -35,6 +41,49 @@
 .duration-box > input{
     width: 75%;
 }
-.vol-range{
-    width: 40%;
+
+@media (max-width : 650px) {
+    .duration-box{
+        width: 75%;
+    }
+    .vol-box{
+        position: relative;
+        width: 5%;
+    }
+   .vol-range{
+        display: flex;
+       position: absolute;
+      transform: rotate(-90deg);
+      left: -40px;
+      top: -70px;
+      width: 100px;
+      opacity: 0.2;
+    }
+    .vol-range:hover{
+        opacity: 1;
+    }
+}
+@media (max-width : 450px) {
+    .custom-audio-player{
+        gap: 10px;
+    }
+    .duration-box img{
+        width: 25px;
+        object-fit: contain;
+    }
+    .duration-box span{
+        font-size: 0.8em;
+    }
+}
+@media (max-width : 350px) {
+    .custom-audio-player > img:first-of-type{
+        width: 25px;
+        height: 25px;
+        object-fit: cover;
+    }
+    .duration-box img{
+        width: 20px;
+        object-fit: contain;
+    }
+
 }
