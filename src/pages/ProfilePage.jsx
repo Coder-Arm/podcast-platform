@@ -104,7 +104,7 @@ if(!user) return <><Header/></>
       <div className='profile-pic'>
         <img src={userImg} alt='user-avatar'/>
       </div>
-      <div style={{display : 'flex', flexDirection : 'column' ,alignItems : 'center',gap : '20px'}}>
+      <div className='user-details'>
       <InputComponent type={'email'} value={email} placeholder={'Email'} setValue={setEmail} readOnly={true}/>
 
       <p onClick={handlePassword}>Forgot Password/Change Password ?</p>
