@@ -1,4 +1,4 @@
-import React, { useEffect,useRef } from 'react'
+import React, {useRef } from 'react'
 import './style.css'
 
 const InputComponent = ({type,placeholder,value,setValue,readOnly,display}) => {
@@ -8,9 +8,6 @@ const InputComponent = ({type,placeholder,value,setValue,readOnly,display}) => {
     setValue(e.target.value);
   }
 
-  useEffect(() => {
-    if(readOnly === false) inputRef.current.focus();
-  },[readOnly])
  
 
   return (
